@@ -33,10 +33,11 @@ const postTree = (req, res) => {
 
     const newTree = addNodeInTree(node.attributes.id, tree, {
       name: node.name,
+      gender: node.gender,
       attributes: {
         id: v4(),
       },
-      children: child
+      children: child.name
         ? [
             ...node.children,
             {
@@ -121,6 +122,7 @@ function addNodeInTree(id, tree, node) {
     const curNode = queue.pop();
     if (curNode.attributes.id === id) {
       curNode.name = node.name;
+      curNode.gender = node.gender;
       curNode.children = node.children ? node.children : curNode.children;
       return { ...tree };
     }
